@@ -21,8 +21,8 @@ def main():
     results = analyzer.analyze_petition(sample_text)
 
     # Sonuçları kaydet
-    result = analyzer.save_results(results)
-    print(f"Analiz sonucu kaydedildi: {result}")
+    result_demo = analyzer.save_results(results)
+    print(f"Analiz sonucu kaydedildi: {result_demo}")
 
     # Özet göster
     print("\n=== ANALİZ ÖZETİ ===")

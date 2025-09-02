@@ -1,15 +1,19 @@
 import re
 import spacy
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 class TextPreprocessor:
     def __init__(self):
         # türkçe dil modelini yükle başarısız olursa hata ver
         try:
             self.nlp = spacy.load("tr_core_news_sm")
+            print("Turkish spaCy model is succesfully loaded")
         except OSError:
             print("Could not load turkish model continuing general model")
             self.nlp = spacy.blank("tr")
+
+            # sentencizer bileşenini ekle hata - fix denemesi
+            self.nlp.add_pipe("sentencizer")
 
     def clean_text(self, text: str) -> str:
         """Metni temizler ve normalize eder"""

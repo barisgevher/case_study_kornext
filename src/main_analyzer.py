@@ -1,4 +1,5 @@
 import json
+import os
 from datetime import datetime
 from typing import Dict, Any, List
 from text_preprocessor import TextPreprocessor
@@ -94,12 +95,32 @@ class PetitionAnalyzer:
         return notes
 
     def save_results(self, results: Dict, filename: str = None):
-        """Sonuçların JSON olarak kayıt edilmesi"""
+        """Sonuçları JSON olarak kaydet"""
         if not filename:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             filename = f"petition_analysis_{timestamp}.json"
 
-        with open(f"outputs/{filename}", 'w', encoding='utf-8') as f:
-            json.dump(results, f, ensure_ascii=False, indent=2)
+
+        output_dir = "outputs"
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+            print(f"'{output_dir}' klasörü oluşturuldu")
+
+        file_path = os.path.join(output_dir, filename)
+
+        try:
+            with open(file_path, 'w', encoding='utf-8') as f:
+                json.dump(results, f, ensure_ascii=False, indent=2)
+            print(f"Sonuçlar başarıyla kaydedildi: {file_path}")
+        except Exception as e:
+            print(f"Dosya kaydetme hatası: {e}")
+
+            try:
+                with open(filename, 'w', encoding='utf-8') as f:
+                    json.dump(results, f, ensure_ascii=False, indent=2)
+                print(f"Sonuçlar mevcut dizine kaydedildi: {filename}")
+            except Exception as e2:
+                print(f"Alternatif kaydetme de başarısız: {e2}")
+                return None
 
         return filename
