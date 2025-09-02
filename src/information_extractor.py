@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import Dict, List, Optional
 import json
 
-class InformalExtractor:
+class InformationExtractor:
     def __init__(self):
         self.patterns = self.load_patterns()
 
