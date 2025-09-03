@@ -5,17 +5,12 @@ def main():
     analyzer = PetitionAnalyzer()
 
     sample_text = """
-    Sayın Belediye Başkanımız,
-
-    Ben Mehmet Yılmaz, Çankaya Mahallesi Atatürk Caddesi'nde ikamet etmekteyim.
-    Son 3 aydır mahallemizdeki yol sorunundan dolayı çok mağdur oluyoruz.
-    Her yağmurda çukurlar su doluyor ve araçlarımız zarar görüyor.
-
-    Defalarca bildirdiğimiz halde henüz bir çözüm bulamadık.
-    Bu durumun bir an önce çözülmesini talep ediyoruz.
-
-    Saygılarımla,
-    Mehmet Yılmaz
+  Sayın Yetkili,
+Son iki haftadır her akşam saat 20:00 civarında mahallemizde elektrikler kesilmektedir.
+ Özellikle çocukların ders saatine denk gelen bu kesintiler nedeniyle mağduriyet yaşıyoruz. 
+ Konuyla ilgili defalarca arıza bildirimi yapmamıza rağmen kalıcı bir çözüm sunulmamıştır. 
+ Gereğinin yapılmasını arz ederim.
+Ali Demirtaş, Bahçelievler / İstanbul
     """
 
     results = analyzer.analyze_petition(sample_text)
